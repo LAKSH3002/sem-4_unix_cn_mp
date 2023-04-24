@@ -1,0 +1,12 @@
+#Enter your roll number through command line input and print power table of your roll number upto 5
+
+echo "Enter your roll number"
+read rollNo
+for((i=1;i<= 5;i++))
+do
+power=$((rollNo**i))
+echo "$rollNo^$i =$power"
+done
+
+# Run-command: chmod 775 powertable.sh
+
