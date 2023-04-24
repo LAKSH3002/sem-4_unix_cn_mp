@@ -1,0 +1,6 @@
+Syntax : sed options 'address action' file(s)
+
+Options:
+-n suppress duplicate line printing
+-f reads instruction from a file
+-e interprets the next string as an instruction
