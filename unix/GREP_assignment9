@@ -17,3 +17,16 @@ Options Description
 -A n : Prints searched line and nlines after the result.
 -B n : Prints searched line and n line before the result.
 -C n : Prints searched line and n lines after before the result.
+
+
+#Display student record where a name has 'Kum' in the record
+
+$grep -F "Kum" students.txt
+
+#COunt the number of records with S1
+
+$grep -c "S1" students.txt
+
+#Display lines in which roll Number does not start with 1
+
+$grep -v "^1" students.txt
