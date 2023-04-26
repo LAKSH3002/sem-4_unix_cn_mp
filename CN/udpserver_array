@@ -1,0 +1,28 @@
+import java.net.*;
+import java.io.*;
+
+public class UDPServer {
+   public static void main(String args[]) throws Exception {
+      DatagramSocket serverSocket = new DatagramSocket(9876);
+      byte[] receiveData = new byte[1024];
+      byte[] sendData = new byte[1024];
+      while(true) {
+         DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length);
+         serverSocket.receive(receivePacket);
+         ByteArrayInputStream bais = new ByteArrayInputStream(receivePacket.getData());
+         DataInputStream dis = new DataInputStream(bais);
+         int arrLength = dis.readInt(); // read the length of the array
+         int[] arr = new int[arrLength];
+         for(int i = 0; i < arrLength; i++) {
+            arr[i] = dis.readInt(); // read the array elements
+         }
+         InetAddress IPAddress = receivePacket.getAddress();
+         int port = receivePacket.getPort();
+         String capitalizedSentence = "Received array of length " + arrLength;
+         sendData = capitalizedSentence.getBytes();
+         DatagramPacket sendPacket =
+            new DatagramPacket(sendData, sendData.length, IPAddress, port);
+         serverSocket.send(sendPacket);
+      }
+   }
+}
